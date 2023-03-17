@@ -1,0 +1,49 @@
+.media{
+    display:flex;
+    flex-direction:column;
+    width:200px;
+    padding: 5px 0px ;
+    background-color:rgb(34, 50, 54);
+    border-radius: 10px;
+    position: relative;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    cursor: pointer;
+    margin-bottom: 8px;
+}
+  
+.media:hover{
+    background-color:whitesmoke;
+    color: black;
+}
+
+@media (max-width:550px){
+    .media{
+        width:46%
+    }
+}
+
+.poster{
+    border-radius:19px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    
+}
+
+.title{
+    width: 100%;
+    text-align: center;
+    font-size:17px;
+    padding:8px 0;
+}
+
+.subtitle{
+    display: flex;
+    flex-direction: space-between;
+    padding-left:5px;
+    padding-bottom: 2px;
+    
+   
+   
+   
+}

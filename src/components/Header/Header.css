@@ -1,0 +1,22 @@
+.header{
+    width: 100%;
+    cursor: pointer;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    background-color: rgb(0, 8, 11);
+    padding-bottom: 15px;
+    color: rgb(110, 110, 215);
+    font-weight: bolder;
+    font-size: 5vw;
+    box-shadow:0px 5px 5px rgb(36, 55, 102);
+    text-transform: uppercase;
+    padding-top: 15px;
+    z-index: 100;
+    font-family: 'Rampart One', cursive;
+    }
+@media (max-width:1000px){
+    .header{
+        font-size:6.4vw;
+    }
+}

@@ -1,11 +1,11 @@
 import { Container } from "@mui/material";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Header from "./components/Header/Header";
+import Header from "./components/Header";
 import SimpleBottomNavigation from "./components/Navigation";
-import Trending from "./components/pages/Trending";
-import Movies from "./components/pages/Movies";
-import Series from "./components/pages/Series";
-import Search from "./components/pages/Search";
+import Trending from "./pages/Trending";
+import Movies from "./pages/Movies";
+import Series from "./pages/Series";
+import Search from "./pages/Search";
 import "./App.css";
 
 function App() {

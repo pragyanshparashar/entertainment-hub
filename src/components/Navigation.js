@@ -12,7 +12,6 @@ import { useNavigate } from "react-router-dom";
 export default function SimpleBottomNavigation() {
   const [value, setValue] = React.useState(0);
   const history = useNavigate();
-  console.log(history);
   useEffect(() => {
     if (value === 0) history("/");
     else if (value === 1) history("/movies");

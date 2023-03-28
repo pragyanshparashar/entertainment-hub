@@ -7,7 +7,7 @@ import {
   ThemeProvider,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import FindInPageIcon from "@mui/icons-material/FindInPage";
+import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import axios from "axios";
 import CustomPagination from "../../components/Pagination";
 import SingleContent from "../../components/SingleContent";
@@ -22,7 +22,7 @@ const Search = () => {
     palette: {
       type: "dark",
       primary: {
-        main: "#e91e63",
+        main: "#ce93d8",
       },
     },
   });
@@ -62,7 +62,7 @@ const Search = () => {
               variant="contained"
               style={{ marginLeft: 10 }}
             >
-              <FindInPageIcon />
+              <SearchRoundedIcon />
             </Button>
           </span>
           <Tabs

@@ -5,7 +5,10 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Fade from "@mui/material/Fade";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
+import YouTubeIcon from "@mui/icons-material/YouTube";
+import Carousel from "../Carousel/Carousel";
+import "./ContentModal.css";
+
 import axios from "axios";
 import {
   img_500,
@@ -18,11 +21,17 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
+  width: 900,
+  height: 550,
+  bgcolor: "black",
   border: "2px solid #000",
   boxShadow: 24,
   p: 4,
+  color: "white",
+  "@media (max-width:600px)": {
+    width: 400,
+    height: 600,
+  },
 };
 
 export default function ContentModal({ children, media_type, id }) {
@@ -33,31 +42,34 @@ export default function ContentModal({ children, media_type, id }) {
   const handleClose = () => setOpen(false);
 
   const fetchData = async () => {
-    const { data } = await axios.get(
+    const response = await axios.get(
       `https://api.themoviedb.org/3/${media_type}/${id}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
     );
-    setContent(data);
+    console.log(response, "axios-response");
+
+    setContent(response.data);
   };
+
+  console.log(content);
 
   const fetchVideo = async () => {
     const { data } = await axios.get(
       `https://api.themoviedb.org/3/${media_type}/${id}/videos?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
     );
 
-    console.log(data);
     setVideo(data.results[0]?.key);
   };
 
   useEffect(() => {
     fetchData();
     fetchVideo();
-  }, []);
+  }, [media_type, id]);
 
   return (
-    <div>
-      <Button className="media" onClick={handleOpen}>
+    <>
+      <div className="media" onClick={handleOpen}>
         {children}
-      </Button>
+      </div>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -74,25 +86,41 @@ export default function ContentModal({ children, media_type, id }) {
         <Fade in={open}>
           {content && (
             <Box sx={style}>
-              <div className="contentModal">
-                {/* <img
-                  alt={content.name || content.title}
-                  className="content_portrait"
-                  src={
-                    content.poster_path
-                      ? `${img_500}/${content.poster_path}`
-                      : unavailable
-                  }
-                /> */}
-                <img
-                  alt={content.name || content.title}
-                  className="content_portrait"
-                  src={
-                    content.backdrop_path
-                      ? `${img_500}/${content.backdrop_path}`
-                      : unavailableLandscape
-                  }
-                />
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "space-between",
+                  backgroundColor: "black",
+                }}
+                className="contentModal"
+              >
+                <div
+                  className="imageContentModal"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-around",
+                    height: 200,
+                    width: "100%",
+                  }}
+                >
+                  <img
+                    style={{
+                      height: 218,
+                      width: 500,
+                      position: "absolute",
+                      top: "-0px",
+                      margin: "10px",
+                    }}
+                    alt={content.name || content.title}
+                    src={
+                      content.backdrop_path
+                        ? `${img_500}/${content.backdrop_path}`
+                        : unavailableLandscape
+                    }
+                  />
+                </div>
 
                 <div className="contentModal_about">
                   <span className="contentModal_title">
@@ -107,13 +135,42 @@ export default function ContentModal({ children, media_type, id }) {
                   {content.tagline && (
                     <i className="tagline"> {content.tagline} </i>
                   )}
-                  <span>{content.overview}</span>
+                  <span style={{}}>{content.overview}</span>
+                  <div>
+                    <Carousel media_type={media_type} id={id} />
+                  </div>
+                  <div className="trailer-btn">
+                    <Button
+                      variant="contained"
+                      startIcon={<YouTubeIcon />}
+                      color="secondary"
+                      target="_blank"
+                      href={`https://www.youtube.com/watch?v=${video}`}
+                    >
+                      Watch the Trailer
+                    </Button>
+                  </div>
+                  <Button
+                    style={{
+                      visibility: "hidden",
+                      "@media (max-width: 100px)": {
+                        visibility: "visible",
+                      },
+                    }}
+                    variant="contained"
+                    startIcon={<YouTubeIcon />}
+                    color="secondary"
+                    target="_blank"
+                    href={`https://www.youtube.com/watch?v=${video}`}
+                  >
+                    Watch the Trailer
+                  </Button>
                 </div>
               </div>
             </Box>
           )}
         </Fade>
       </Modal>
-    </div>
+    </>
   );
 }

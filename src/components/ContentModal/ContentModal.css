@@ -1,0 +1,12 @@
+.contentModal_about{
+    position: relative;
+}
+
+.trailer-btn {
+    margin-top: 0.5rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+

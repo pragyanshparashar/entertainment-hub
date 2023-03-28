@@ -16,8 +16,7 @@ const Movies = () => {
 
   const fetchmovies = async () => {
     const { data } = await axios.get(
-      `
-      https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}&with_genres=${genreforURL}`
+      `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}&with_genres=${genreforURL}`
     );
 
     setContent(data.results);
@@ -25,6 +24,7 @@ const Movies = () => {
   };
 
   useEffect(() => {
+    window.scroll(0, 0);
     fetchmovies();
   }, [page, genreforURL]);
 
@@ -53,7 +53,7 @@ const Movies = () => {
                 poster={movieData.poster_path}
                 title={movieData.title || movieData.name}
                 date={movieData.first_air_date || movieData.release_date}
-                media_type="movies"
+                media_type="movie"
                 vote_average={movieData.vote_average}
               />
             );

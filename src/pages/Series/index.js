@@ -24,12 +24,13 @@ const Series = () => {
   };
 
   useEffect(() => {
+    window.scroll(0, 0);
     fetchmovies();
   }, [page, genreforURL]);
 
   return (
     <div>
-      <span className="pagetitle">Gotham</span>
+      <span className="pagetitle">TV Series</span>
       <Genres
         type="tv"
         selectedGenres={selectedGenres}

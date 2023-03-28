@@ -10,11 +10,7 @@ import Carousel from "../Carousel/Carousel";
 import "./ContentModal.css";
 
 import axios from "axios";
-import {
-  img_500,
-  unavailable,
-  unavailableLandscape,
-} from "../../config/config";
+import { img_500, unavailableLandscape } from "../../config/config";
 
 const style = {
   position: "absolute",

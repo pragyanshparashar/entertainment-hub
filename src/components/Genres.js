@@ -36,7 +36,7 @@ const Genres = ({
     return () => {
       setGenres({});
     };
-  }, []);
+  }, [type]);
 
   return (
     <div style={{ padding: "6px 0px" }}>

@@ -8,12 +8,6 @@ import "./Carousel.css";
 
 const handleDragStart = (e) => e.preventDefault();
 
-const items = [
-  <img src="path-to-img" onDragStart={handleDragStart} role="presentation" />,
-  <img src="path-to-img" onDragStart={handleDragStart} role="presentation" />,
-  <img src="path-to-img" onDragStart={handleDragStart} role="presentation" />,
-];
-
 const Gallery = ({ media_type, id }) => {
   const [credits, setCredits] = useState();
 
@@ -25,7 +19,7 @@ const Gallery = ({ media_type, id }) => {
             ? `${img_300}/${movieData.profile_path}`
             : noPicture
         }
-        alt={movieData?.name}
+        alt={`${movieData?.name}`}
         onDragStart={handleDragStart}
         className="carouselitem_img"
       />
@@ -54,7 +48,7 @@ const Gallery = ({ media_type, id }) => {
 
   useEffect(() => {
     fetchCarousel();
-  }, []);
+  }, [media_type, id]);
 
   return (
     <AliceCarousel
